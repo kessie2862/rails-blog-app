@@ -21,9 +21,9 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'GET /posts#show' do
     user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', posts_counter: 0,
-                     bio: 'Teacher from Poland.')
+                       bio: 'Teacher from Poland.')
     post = Post.create(title: 'Learning Rails', text: 'This is the second post of Lilly', comments_counter: 0,
-                     likes_counter: 0, author_id: user.id)
+                       likes_counter: 0, author_id: user.id)
     it 'should check if respose status is correct' do
       get user_post_path(id: post, user_id: user)
       expect(response).to have_http_status(:success)
@@ -38,6 +38,5 @@ RSpec.describe 'Posts', type: :request do
       get user_post_path(id: post, user_id: user)
       expect(response.body).to include('Post Details')
     end
-
   end
 end
