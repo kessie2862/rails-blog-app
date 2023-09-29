@@ -19,9 +19,9 @@ class Post < ApplicationRecord
 
   def limit_sentence(content)
     words = content.split
-    return content unless words.count > 30
+    return content unless words.count > 40
 
-    limited_words = words.take(30)
+    limited_words = words.take(40)
     "#{limited_words.join(' ')} . . ."
   end
 end
