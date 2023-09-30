@@ -13,6 +13,10 @@
     </div>
   </div>
 
+  <div class="container d-flex justify-content-end mb-4">
+    <a href="<%= new_post_path %>" class="btn btn-secondary">New Post</a>
+  </div>
+
   <% @posts.each do |post| %>
   <div class="bg-light rounded-top p-3">
     <p class="mb-1 text-primary"><%= post.title %></p>
