@@ -44,6 +44,22 @@ RSpec.describe 'Post show page', type: :feature do
       expect(page).to have_content('You just liked this post')
     end
 
+    it 'Should see the post body.' do
+      expect(page).to have_content(posts.text.to_s)
+    end
+
+    it 'Should see the username of each commentor.' do
+      posts.comments.all.each do |comment|
+        expect(page).to have_content(comment.author.name.to_s)
+      end
+    end
+
+    it 'Should see the comment each commentor left.' do
+      posts.comments.all.each do |comment|
+        expect(page).to have_content(comment.text.to_s)
+      end
+    end
+
     it 'Display button to go back to all posts' do
       expect(page).to have_link('Back to all posts')
     end
