@@ -63,6 +63,11 @@ RSpec.describe 'post index page', type: :feature do
       expect(page).to have_current_path(new_post_path)
     end
 
+    it "When I click a user's post, it redirects me to that post's show page" do
+      click_link 'Show details', href: user_post_path(user, posts[1])
+      expect(page).to have_current_path(%r{/users/\d+/posts/\d+})
+    end
+
     it 'When I click on Show details link, I am redirected to their post show page' do
       click_link 'Show details', href: user_post_path(user, posts[0])
       expect(page).to have_current_path(user_post_path(user, posts[0]))
