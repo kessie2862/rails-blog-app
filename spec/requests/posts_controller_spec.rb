@@ -15,7 +15,7 @@ RSpec.describe 'Posts', type: :request do
 
     it 'includes the correct placeholder text in the response body' do
       get user_posts_path(user)
-      expect(response.body).to include('List of Posts')
+      expect(response.body).to include('List of all Posts')
     end
   end
 
