@@ -26,17 +26,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    begin
-      @post = Post.find(params[:id])
-      @user = @post.author
-      if @post.destroy
-        redirect_to user_path(@user), notice: 'Post was deleted.'
-      else
-        redirect_to user_path(@user), alert: 'Error deleting the post.'
-      end
-    rescue ActiveRecord::InvalidForeignKey => e
-      redirect_to user_path(@user), alert: 'Error deleting the post: There are associated comments.'
+    @post = Post.find(params[:id])
+    @user = @post.author
+    if @post.destroy
+      redirect_to user_path(@user), notice: 'Post was deleted.'
+    else
+      redirect_to user_path(@user), alert: 'Error deleting the post.'
     end
+  rescue ActiveRecord::InvalidForeignKey
+    redirect_to user_path(@user), alert: 'Error deleting the post: There are associated comments.'
   end
 
   private
